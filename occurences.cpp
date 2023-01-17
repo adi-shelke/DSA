@@ -2,12 +2,11 @@
 using namespace std;
 int main()
 {
-    int arr[]={1,2,3,2,3,3};
+    int arr[]={1,2,2,3,3,3};
     int darr[5];
-    int count=0;
-    for(int i=0;i<(sizeof(arr)/sizeof(arr[0]));i++)
+    int count=1;
+    for(int i=0;i<(sizeof(arr)/sizeof(arr[0]));i++)   
     {
-        
         for(int j=0;j<(sizeof(arr)/sizeof(arr[0]));j++)
         {
             if(i==j)
@@ -20,6 +19,7 @@ int main()
         darr[i]=count;
         count=0;
     }
+    cout<<endl;
     for(int i=0;i<(sizeof(arr)/sizeof(arr[0]));i++)
     {
         for(int j=0;j<(sizeof(arr)/sizeof(arr[0]));j++)
@@ -35,6 +35,4 @@ int main()
         cout<<"True";
         return 0;
     }
-    // for(int i=0;i<5;i++)
-    //     cout<<darr[i]<<" ";
 }
