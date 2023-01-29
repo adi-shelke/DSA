@@ -60,16 +60,24 @@ class BST{
             cout<<root->data<<" ";
         }
     }
-    bool search(Node* root, int key)
+    bool search(int key, Node* root)
     {
         if(root==NULL)
             return false;
         else if(root->data==key)
             return true;
         else if(root->data<key)
-            search(root->right,key);
+            search(key, root->right);
         else
-            search(root->left,key);
+            search(key,root->left);
+    }
+    void deleteNode(int data, Node* root)
+    {
+
+    }
+    void calCulateHeight(Node* root)
+    {
+
     }
     
 };
@@ -90,5 +98,5 @@ int main()
     cout<<endl;
     bst.displayPostorder(root);
     cout<<endl;
-    cout<<bst.search(root,80);
+    cout<<bst.search(10,root);
 }
