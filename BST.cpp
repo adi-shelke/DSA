@@ -12,57 +12,6 @@ class Node{
         right=NULL;
     }
 };
-// class Queue{
-//     public:
-//     Node* queue[20];
-//     int front,rear;
-//     Queue(){
-//     front=-1;
-//     rear=-1;
-//     }
-//     void push(Node* node)
-//     {
-//         if(front==-1 && rear==-1)
-//         {
-//             front=rear=0;
-//             queue[rear]=node;
-//         }
-//         else if((rear+1)%20==front)
-//             cout<<"Queue is full";
-//         else
-//         {
-//             rear=(rear+1)%20;
-//             queue[rear]=node;
-//         }
-//     }
-//     bool isEmpty()
-//     {
-//         if(front==-1 && rear==-1)
-//             return true;
-//         else
-//             return false;
-//     }
-//     Node* pop()
-//     {
-//         if(front==rear)
-//         {
-//             Node* popped=queue[front];
-//             front=-1;
-//             rear=-1;
-//         }
-//         else
-//         {
-//         Node* popped=queue[front];
-//         front=(front+1)%20;
-//         return popped;
-//         }
-//     }
-    
-//     Node* frontNode()
-//     {
-//         return queue[front];
-//     }
-// };
 class BST{
     public:
     Node* insert(int data,Node* root)
@@ -148,6 +97,39 @@ class BST{
     {
 
     }
+    void calculateDepth(Node* root)
+    {
+
+    }
+    void calculateHeight(Node* root)
+    {
+
+    }
+    void findMin(Node* root)
+    {
+        if(root==NULL)
+            return;
+        else
+        {
+            Node* temp=root;
+            while (temp->left!=NULL)
+                temp=temp->left;
+            cout<<"Min Node: "<<temp->data<<endl;
+        }
+
+    }
+    void findMax(Node* root)
+    {
+        if(root==NULL)
+            return;
+        else
+        {
+            Node* temp=root;
+            while (temp->right!=NULL)
+                temp=temp->right;
+            cout<<"Max Node: "<<temp->data<<endl;
+        }
+    }
 };
 int main()
 {
@@ -166,7 +148,10 @@ int main()
     cout<<endl;
     bst.displayPostorder(root);
     cout<<endl;
-    cout<<bst.search(10,root);
+    cout<<"Search result of 10 is: "<<bst.search(10,root);
     cout<<endl;
     bst.breadthFirstTraversal(root);
+    cout<<endl;
+    bst.findMin(root);
+    bst.findMax(root);
 }
