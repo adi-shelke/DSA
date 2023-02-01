@@ -1,4 +1,5 @@
 #include<iostream>
+#include <queue>
 using namespace std;
 class Node{
     public:
@@ -11,6 +12,57 @@ class Node{
         right=NULL;
     }
 };
+// class Queue{
+//     public:
+//     Node* queue[20];
+//     int front,rear;
+//     Queue(){
+//     front=-1;
+//     rear=-1;
+//     }
+//     void push(Node* node)
+//     {
+//         if(front==-1 && rear==-1)
+//         {
+//             front=rear=0;
+//             queue[rear]=node;
+//         }
+//         else if((rear+1)%20==front)
+//             cout<<"Queue is full";
+//         else
+//         {
+//             rear=(rear+1)%20;
+//             queue[rear]=node;
+//         }
+//     }
+//     bool isEmpty()
+//     {
+//         if(front==-1 && rear==-1)
+//             return true;
+//         else
+//             return false;
+//     }
+//     Node* pop()
+//     {
+//         if(front==rear)
+//         {
+//             Node* popped=queue[front];
+//             front=-1;
+//             rear=-1;
+//         }
+//         else
+//         {
+//         Node* popped=queue[front];
+//         front=(front+1)%20;
+//         return popped;
+//         }
+//     }
+    
+//     Node* frontNode()
+//     {
+//         return queue[front];
+//     }
+// };
 class BST{
     public:
     Node* insert(int data,Node* root)
@@ -71,6 +123,23 @@ class BST{
         else
             search(key,root->left);
     }
+    void breadthFirstTraversal(Node* root)
+    {
+        queue<Node*> Q;
+        if(root==NULL)
+            return;
+        Q.push(root);
+        while (!Q.empty())
+        {
+            Node* temp=Q.front();
+            cout<<temp->data<<" ";
+            if(temp->left != NULL)
+                Q.push(temp->left);
+            if(temp->right != NULL)
+                Q.push(temp->right);   
+            Q.pop();
+        }
+    }
     void deleteNode(int data, Node* root)
     {
 
@@ -79,7 +148,6 @@ class BST{
     {
 
     }
-    
 };
 int main()
 {
@@ -99,4 +167,6 @@ int main()
     bst.displayPostorder(root);
     cout<<endl;
     cout<<bst.search(10,root);
+    cout<<endl;
+    bst.breadthFirstTraversal(root);
 }
