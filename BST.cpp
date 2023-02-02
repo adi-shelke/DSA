@@ -89,34 +89,19 @@ class BST{
             Q.pop();
         }
     }
-    void deleteNode(int data, Node* root)
-    {
-
-    }
-    void calCulateHeight(Node* root)
-    {
-
-    }
-    void calculateDepth(Node* root)
-    {
-
-    }
-    void calculateHeight(Node* root)
-    {
-
-    }
-    void findMin(Node* root)
+    Node* findMin(Node* root)
     {
         if(root==NULL)
-            return;
+            return root;
         else
         {
             Node* temp=root;
             while (temp->left!=NULL)
                 temp=temp->left;
-            cout<<"Min Node: "<<temp->data<<endl;
-        }
+            // cout<<"Min Node: "<<temp->data<<endl;    //add this to print the data
+            return temp;
 
+        }
     }
     void findMax(Node* root)
     {
@@ -130,6 +115,50 @@ class BST{
             cout<<"Max Node: "<<temp->data<<endl;
         }
     }
+    Node* deleteNode(int data, Node* root)
+    {
+        if(root==NULL)
+            return root;
+        else if(data<root->data)
+            root->left=deleteNode(data,root->left);
+        else if(data>root->data)
+            root->right=deleteNode(data,root->right);
+        else
+        {
+            if(root->left == NULL && root->right == NULL)
+            {
+                delete root;
+                root=NULL;
+            }
+            else if(root->left == NULL)
+            {
+                Node* temp=root;
+                root=root->right;
+                delete temp;
+            }
+            else if(root->right == NULL)
+            {
+                Node* temp=root;
+                root=root->left;
+                delete temp;
+            }
+            else
+            {
+                Node* temp=findMin(root->right);
+                root->data=temp->data;
+                root->right=deleteNode(temp->data,root->right);
+            }
+        }
+        return root;
+    }
+    void calCulateHeight(Node* root)
+    {
+
+    }
+    void calculateDepth(Node* root)
+    {
+
+    } 
 };
 int main()
 {
@@ -142,16 +171,26 @@ int main()
     root=bst.insert(30,root);
     root=bst.insert(40,root);
     root=bst.insert(5,root);
+    cout<<"Inorder traversal:"<<endl;
     bst.displayInorder(root);
-    cout<<endl;
+    cout<<endl<<endl;
+    cout<<"Preorder traversal:"<<endl;
     bst.displayPreorder(root);
-    cout<<endl;
+    cout<<endl<<endl;
+    cout<<"Postorder traversal:"<<endl;
     bst.displayPostorder(root);
-    cout<<endl;
+    cout<<endl<<endl;
     cout<<"Search result of 10 is: "<<bst.search(10,root);
-    cout<<endl;
+    cout<<endl<<endl;
+    cout<<"Breadth First traversal:"<<endl;
+    bst.breadthFirstTraversal(root);
+    cout<<endl<<endl;
+    // bst.findMin(root);
+    bst.findMax(root);
+    cout<<"Before deletion, the breadth first traversal is:"<<endl;
     bst.breadthFirstTraversal(root);
     cout<<endl;
-    bst.findMin(root);
-    bst.findMax(root);
+    root=bst.deleteNode(20,root);
+    cout<<"After deletion, the breadth first traversal is:"<<endl;
+    bst.breadthFirstTraversal(root);
 }
