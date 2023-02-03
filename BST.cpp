@@ -157,9 +157,9 @@ class BST{
          return -1;
         return max(calCulateHeight(root->left),calCulateHeight(root->right))+1;
     }
-    void calculateDepth(Node* root)
+    int calculateDepth(Node* root,int data)
     {
-
+        
     } 
 };
 int main()
@@ -189,12 +189,14 @@ int main()
     cout<<endl<<endl;
     // bst.findMin(root);
     bst.findMax(root);
-    cout<<"Before deletion, the breadth first traversal is:"<<endl;
-    bst.breadthFirstTraversal(root);
-    cout<<endl;
-    root=bst.deleteNode(20,root);
-    cout<<"After deletion, the breadth first traversal is:"<<endl;
-    bst.breadthFirstTraversal(root);
+    // cout<<"Before deletion, the breadth first traversal is:"<<endl;
+    // bst.breadthFirstTraversal(root);
+    // cout<<endl;
+    // root=bst.deleteNode(20,root);
+    // cout<<"After deletion, the breadth first traversal is:"<<endl;
+    // bst.breadthFirstTraversal(root);
     cout<<endl<<endl;
     cout<<"Height of BST is: "<<bst.calCulateHeight(root)<<endl;
+    cout<<endl;
+    cout<<"Depth of node is: "<<bst.calculateDepth(root,70)<<endl;
 }
