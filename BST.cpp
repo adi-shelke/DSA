@@ -72,6 +72,17 @@ class BST{
         else
             search(key,root->left);
     }
+    Node* searchAndReturnPointer(int key, Node* root)
+    {
+        if(root==NULL)
+            return NULL;
+        else if(root->data==key)
+            return root;
+        else if(root->data<key)
+            search(key, root->right);
+        else
+            search(key,root->left);
+    }
     void breadthFirstTraversal(Node* root)
     {
         queue<Node*> Q;
@@ -100,7 +111,6 @@ class BST{
                 temp=temp->left;
             // cout<<"Min Node: "<<temp->data<<endl;    //add this to print the data
             return temp;
-
         }
     }
     void findMax(Node* root)
@@ -159,8 +169,33 @@ class BST{
     }
     int calculateDepth(Node* root,int data)
     {
-        
+
     } 
+    void getInorderSuccessor(Node* root, int data)
+    {
+        Node* current = searchAndReturnPointer(data,root);
+        if(current==NULL)
+            return;
+        if(current->right!=NULL)
+            cout<<findMin(current->right)->data;
+        else
+        {
+            Node* successor = NULL;
+            Node* ancestor = root;
+           while (ancestor!=current)
+           {
+            if(current->data<ancestor->data)
+            {
+                successor=ancestor;
+                ancestor=ancestor->left;
+            }
+            else
+                ancestor=ancestor->right;
+           }
+           cout<<successor->data;
+            
+        }
+    }
 };
 int main()
 {
@@ -198,5 +233,8 @@ int main()
     cout<<endl<<endl;
     cout<<"Height of BST is: "<<bst.calCulateHeight(root)<<endl;
     cout<<endl;
-    cout<<"Depth of node is: "<<bst.calculateDepth(root,70)<<endl;
+    // cout<<"Depth of node is: "<<bst.calculateDepth(root,70)<<endl;
+    // cout<<endl;
+    bst.getInorderSuccessor(root,5);
+    // cout<<successor->data;
 }
