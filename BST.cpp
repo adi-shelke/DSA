@@ -12,6 +12,26 @@ class Node{
         right=NULL;
     }
 };
+class Stack{
+    public:
+    Node* st[50];
+    int top;
+    Stack(){
+    top=-1;
+    }
+    void push(Node* root)
+    {
+        st[++top]=root;
+    }
+    Node* pop()
+    {
+        return st[top--];
+    }
+    bool isEmpty()
+    {
+        return top==-1?true:false;
+    }
+};
 class BST{
     public:
     Node* insert(int data,Node* root)
@@ -60,6 +80,30 @@ class BST{
             displayPostorder(root->right);
             cout<<root->data<<" ";
         }
+    }
+    void displayIterativeInorder(Node* root)
+    {
+        Node* current=root;
+        Stack st;
+        while (true)
+        {
+            if(current!=NULL){
+                st.push(current);
+                current=current->left;
+            }
+            else
+            {
+                if(!st.isEmpty())
+                {
+                    current=st.pop();
+                    cout<<current->data<<" ";
+                    current=current->right;
+                }
+                else
+                    break;
+            }
+        }
+        
     }
     bool search(int key, Node* root)
     {
@@ -277,4 +321,8 @@ int main()
     cout<<"After mirroring the BST, the Breadth first traversal is: "<<endl;
     bst.breadthFirstTraversal(root);
     cout<<endl;
+    bst.displayIterativeInorder(root);
+    cout<<endl;
+    bst.displayInorder(root);
+    
 }
