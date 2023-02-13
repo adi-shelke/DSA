@@ -212,9 +212,19 @@ class BST{
             
         }
     }
-    Node* mirror(Node* root)
+    void mirror(Node* root)
     {
-        
+        if(root==NULL)
+            return;
+        else
+        {
+            mirror(root->left);
+            mirror(root->right);
+            Node* temp;
+            temp=root->left;
+            root->left=root->right;
+            root->right=temp;
+        }
     }
 };
 int main()
@@ -260,4 +270,11 @@ int main()
     cout<<endl;
     Node* successor=bst.getInorderSuccessor(root,10);
     cout<<"Successor is: "<<successor->data;
+    cout<<endl;
+    cout<<"Before mirroring the BST, the Breadth first traversal is: "<<endl;
+    bst.breadthFirstTraversal(root);
+    bst.mirror(root);
+    cout<<"After mirroring the BST, the Breadth first traversal is: "<<endl;
+    bst.breadthFirstTraversal(root);
+    cout<<endl;
 }
