@@ -85,6 +85,8 @@ class BST{
     {
         Node* current=root;
         Stack st;
+        if(root==NULL)
+            return;
         while (true)
         {
             if(current!=NULL){
@@ -104,6 +106,43 @@ class BST{
             }
         }
         
+    }
+    void displayIterativePreorder(Node* root)
+    {
+        if(root==NULL)
+            return;
+        Stack st;
+        st.push(root);
+        while (!st.isEmpty())
+        {
+            Node* current = st.pop();
+            cout<<current->data<<" ";
+            if(current->right)
+                st.push(current->right);
+            if(current->left)
+                st.push(current->left);
+        }
+        
+    }
+    void displayIterativePostorder(Node* root)
+    {
+        if(root==NULL)
+            return;
+        Stack st1;
+        Stack st2;
+        st1.push(root);
+        while (!st1.isEmpty())
+        {
+            Node* current = st1.pop();
+            st2.push(current);
+            if(current->left)
+                st1.push(current->left);
+            if(current->right)
+                st1.push(current->right);
+        }
+        while (!st2.isEmpty()){
+            cout<<st2.pop()->data<<" ";
+        }
     }
     bool search(int key, Node* root)
     {
@@ -309,20 +348,35 @@ int main()
     bst.breadthFirstTraversal(root);
     cout<<endl<<endl;
     cout<<"Height of BST is: "<<bst.calCulateHeight(root)<<endl;
-    cout<<endl;
+    cout<<endl<<endl;
     cout<<"Depth of BSTis: "<<bst.calculateDepth(root)<<endl;
-    cout<<endl;
+    cout<<endl<<endl;
     Node* successor=bst.getInorderSuccessor(root,10);
     cout<<"Successor is: "<<successor->data;
-    cout<<endl;
+    cout<<endl<<endl;
     cout<<"Before mirroring the BST, the Breadth first traversal is: "<<endl;
     bst.breadthFirstTraversal(root);
     bst.mirror(root);
     cout<<"After mirroring the BST, the Breadth first traversal is: "<<endl;
     bst.breadthFirstTraversal(root);
+    cout<<endl<<endl;
+    cout<<"Inorder traversal using iterative method:";
     cout<<endl;
     bst.displayIterativeInorder(root);
+    cout<<endl<<endl;
+    cout<<"Inorder traversal using recursive:";
     cout<<endl;
     bst.displayInorder(root);
-    
+    cout<<endl<<endl;
+    cout<<"Preorder traversal using iterative method:"<<endl;
+    bst.displayIterativePreorder(root);
+    cout<<endl<<endl;
+    cout<<"Preorder traversal using recursion:"<<endl;
+    bst.displayPreorder(root);
+    cout<<endl<<endl;
+    cout<<"Postorder traversal using recurssion:"<<endl;
+    bst.displayPostorder(root);
+    cout<<endl<<endl;
+    cout<<"Postorder traversal using iterative method:"<<endl;
+    bst.displayIterativePostorder(root);
 }
