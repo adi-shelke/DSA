@@ -212,6 +212,10 @@ class BST{
             
         }
     }
+    Node* mirror(Node* root)
+    {
+        
+    }
 };
 int main()
 {
