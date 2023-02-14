@@ -14,7 +14,6 @@ class Node{
         rbit=lbit=1;
     }
 };
-
 class TBST{
     public:
     Node* dummy;
@@ -37,6 +36,7 @@ class TBST{
             root->rbit=1;
             root->lbit=0;
             dummy->left=root;
+            return;
         }
         else
         {
@@ -45,10 +45,8 @@ class TBST{
                 
             }
         }
-
     }
 };
-
 int main()
 {
     TBST tbst;
