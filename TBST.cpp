@@ -30,7 +30,7 @@ public:
     }
     void insert(int data)
     {
-        if (dummy->lbit = 1)
+        if (dummy->lbit == 1)
         {
             root = new Node(data);
             root->left = dummy;
@@ -71,13 +71,48 @@ public:
                         newNode->lbit=1;
                         temp->right=newNode;
                         temp->rbit=0;
+                        return;
                     }
+                    else
+                        temp=temp->right;
                 }
             }
         }
+    }
+    Node* inorderSuccessor(Node* current){
+        if(current->rbit==1)
+            return current->right;
+        else
+            current=current->right;
+        while (current->lbit==0){
+            current=current->left;
+        }
+        return current;
+        
+    }
+    void inorder(){
+        Node* current = root;
+        while (current->lbit==0)
+            current=current->left;
+        while (current!=dummy){
+            cout<<current->data<<" ";
+            current=inorderSuccessor(current);
+        }
+        
+        
     }
 };
 int main()
 {
     TBST tbst;
+    tbst.insert(5);
+    tbst.insert(3);
+    tbst.insert(7);
+    tbst.insert(8);
+    tbst.insert(9);
+    tbst.insert(11);
+    tbst.insert(4);
+    tbst.insert(2);
+    tbst.insert(6);
+    tbst.inorder();
 }
