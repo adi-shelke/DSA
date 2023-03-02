@@ -97,9 +97,21 @@ public:
         while (current!=dummy){
             cout<<current->data<<" ";
             current=inorderSuccessor(current);
+        } 
+    }
+    Node* preorderSuccessor(Node* current){
+        if(current->lbit==0)
+            return current->left;
+        while (current->rbit==1)
+            current=current->right;
+        return current->right;
+    }
+    void preorder(){
+        Node* current = root;
+        while (current!=dummy){
+            cout<<current->data<<" ";
+            current=preorderSuccessor(current);
         }
-        
-        
     }
 };
 int main()
@@ -114,5 +126,10 @@ int main()
     tbst.insert(4);
     tbst.insert(2);
     tbst.insert(6);
+    cout<<"The inorder traversal of TBST without recurssion is:"<<endl;
     tbst.inorder();
+    cout<<endl<<endl;
+    cout<<"The preorder traversal of TBST wihtout recurssion is:"<<endl;
+    tbst.preorder();
+    cout<<endl<<endl;
 }
