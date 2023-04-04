@@ -2,7 +2,6 @@
 #include<vector>
 #include<cmath>
 using namespace std;
-
 void insert(vector <int> & arr, int size, int el){
     arr.push_back(el);
     int current,parent; // current to store the index of child and parent to store the index of the parent node.
