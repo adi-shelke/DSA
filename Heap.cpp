@@ -21,15 +21,14 @@ void heapify(vector <int> & arr,int i){
     int left = 2*i+1;
     int right = 2*i+2;
 
-    if(left<arr.size()-1 && arr[left]>arr[largest])
+    if(left<arr.size() && arr[left]>arr[largest])
         largest=left;
-    if(right<arr.size()-1 && arr[right]>arr[largest])
+    if(right<arr.size() && arr[right]>arr[largest])
         largest=right;
     if(largest!=i){
         swap(arr[i],arr[largest]);
         heapify(arr,largest);
     }
-    cout.flush();
 }
 void deletion(vector <int> & arr,vector <int> & sorted){
     sorted.push_back(arr[0]);
@@ -38,12 +37,13 @@ void deletion(vector <int> & arr,vector <int> & sorted){
     heapify(arr,0);
 }
 void heapSort(vector <int> & copy,vector <int> & sorted){
-    while(copy.size()-1>0)
+    while((copy.size())>0)
         deletion(copy,sorted);
-    cout.flush();
+    // }
 }
 int main(){
     vector <int> arr; // initializing a vector to store the heap in the form of array.
+    vector <int> copy;
     vector <int> sorted;
     int size,el; // size for the element size of heap and el for taking each element as input
     cout<<"Enter the size of the heap: ";
@@ -53,17 +53,21 @@ int main(){
         cin>>el;
         insert(arr,el);
     }
+    copy=arr;
     cout<<"Printing the heap"<<endl;
     for(auto x: arr)
         cout<<x<<" ";
     cout<<endl;
-    
     // deletion(arr,sorted);
     // for(auto x: arr)
     //     cout<<x<<" ";
-    heapSort(arr,sorted);
+    heapSort(copy,sorted);
     cout<<"Printing the heap sort"<<endl;
     for(auto x:sorted)
         cout<<x<<" ";
     cout<<endl;
 }
+
+
+// 10
+// 90 78 45 85 83 17 68 43 23 51
