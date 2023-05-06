@@ -17,7 +17,7 @@ class Stack{
     Node* st[50];
     int top;
     Stack(){
-    top=-1;
+        top=-1;
     }
     void push(Node* root)
     {
