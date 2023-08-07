@@ -38,20 +38,38 @@ public:
     {
         if (root == NULL)
             return;
-        else
-        {
-            displayInorder(root->left);
-            cout << root->data<<" ";
-            displayInorder(root->right);
-        }
+        displayInorder(root->left);
+        cout << root->data<<" ";
+        displayInorder(root->right);
+    }
+    void displayPostorder(Node* root){
+        if(root==NULL)
+            return;
+        displayPostorder(root->left);
+        displayPostorder(root->right);
+        cout<<root->data<<" ";
+    }
+    void displayPreorder(Node* root){
+        if(root==NULL)
+            return;
+        cout<<root->data<<" ";
+        displayPreorder(root->left);
+        displayPreorder(root->right);
     }
 
     Node* findMin(Node* root){
         if(root==NULL)
             return root;
-        Node* temp=NULL;
         while(root->left!=NULL)
             root=root->left;
+        return root;
+    }
+
+    Node* findMax(Node* root){
+        if(root==NULL)
+            return root;
+        while(root->right!=NULL)
+            root=root->right;
         return root;
     }
 
@@ -86,6 +104,28 @@ public:
         }
         return root;
     }
+    
+    int calHeight(Node* root){
+        int height;
+        if(root==NULL)
+            return -1;
+        return max(calHeight(root->right),calHeight(root->left))+1;
+    }
+    
+    bool search(Node* root, int key){
+        while (root!=NULL)
+        {
+            if(root->data==key)
+                return true;
+            else if(key<root->data)
+                root=root->left;
+            else
+                root=root->right;
+        }
+        return false;
+    }
+
+    // void levelWiseDisplay(Node* root)
 };
 
 int main()
@@ -98,6 +138,20 @@ int main()
     root=bst.insert(root, 20);
     root=bst.insert(root, 70);
     root=bst.insert(root, 90);
+    root=bst.insert(root, 100);
+    bst.displayInorder(root);
+    cout<<endl;
+    bst.displayPostorder(root);
+    cout<<endl;
+    bst.displayPreorder(root);
+    cout<<endl;
+    cout<<bst.findMax(root)->data;
+    cout<<endl;
+    cout<<"Height: "<<bst.calHeight(root);
+    cout<<endl;
+    cout<<bst.search(root,120);
+    cout<<endl;
     root=bst.deleteNode(root,40);
+    cout<<endl;
     bst.displayInorder(root);
 }

@@ -9,10 +9,13 @@ class Graph{
         int G[size][size];
     }
     int minDist(int distanceArr[],bool visited[],int size){
-        int min=INT_MAX,index;
+        int min=INT_MAX;
+        int index;
         for(int v=0;v<size;v++)
-            if(visited[v]==false && distanceArr[v]<=min)
-                min=distanceArr[v],index=v;
+            if(visited[v]==false && distanceArr[v]<=min){
+                min=distanceArr[v];
+                index=v;
+            }
         return index;
     }
     void printDistance(int distanceArr[],int size){
@@ -37,14 +40,15 @@ class Graph{
         int distanceArr[size];
         bool visited[size];
 
-        for(int i=0;i<size;i++)
-            distanceArr[i]=INT_MAX,visited[i]=false;
+        for(int i=0;i<size;i++){
+            distanceArr[i]=INT_MAX;
+            visited[i]=false;
+        }
         distanceArr[start]=0;
 
         for(int i=0;i<size;i++){
             int u=minDist(distanceArr,visited,size);
             visited[u]=true;
-
             for(int v=0;v<size;v++)
                 if(!visited[v] && G[u][v] && distanceArr[u] != INT_MAX && distanceArr[u]+G[u][v] < distanceArr[v])
                     distanceArr[v]=distanceArr[u]+G[u][v];
