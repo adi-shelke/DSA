@@ -4,9 +4,11 @@ using namespace std;
 vector<int> interSection(vector<int> vect, vector<int> vect2)
 {
     vector<int> ans;
-    for (int i = 0; i < vect.size(); i++)
+    int i = 0;
+    int j = 0;
+    for (i = 0; i < vect.size(); i++)
     {
-        for (int j = 0; j < vect2.size(); j++)
+        for (j = 0; j < vect2.size(); j++)
         {
             if (vect[i] < vect2[j])
                 break;
