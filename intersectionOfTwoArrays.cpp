@@ -8,6 +8,8 @@ vector<int> interSection(vector<int> vect, vector<int> vect2)
     {
         for (int j = 0; j < vect2.size(); j++)
         {
+            if (vect[i] < vect2[j])
+                break;
             if ((vect[i] == vect2[j]) && vect2[j] != INT32_MIN)
             {
                 ans.push_back(vect[i]);
