@@ -1,17 +1,26 @@
-int low = 0, mid = 0, high = 9;
-    while (mid <= high)
+if (n == 1)
+        return x % m;
+    int temp = x;
+    if (n % 2 == 0)
     {
-        if (arr[mid] == 0)
+        int i = n / 2;
+        while (i > 0)
         {
-            swap(arr[low], arr[mid]);
-            mid++;
-            low++;
+            temp *= n / 2;
+            i--;
         }
-        else if (arr[mid] == 1)
-            mid++;
-        else
+        temp *= temp;
+        return temp % m;
+    }
+    else
+    {
+        int i = n / 2;
+        while (i > 0)
         {
-            swap(arr[mid], arr[high]);
-            high--;
+            temp *= n / 2;
+            i--;
         }
+        temp *= temp;
+        temp *= x;
+        return temp % m;
     }
