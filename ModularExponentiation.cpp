@@ -1,4 +1,3 @@
-#include <bits/stdc++.h>
 
 int modularExponentiation(int x, int n, int m) {
 	int res = 1;
