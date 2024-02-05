@@ -5,9 +5,7 @@ bool isSorted(int arr[], int n, int size)
 {
 
     if (n == (size)-1)
-    {
         return true;
-    }
 
     if (arr[n] > arr[n + 1])
         return false;
