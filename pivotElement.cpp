@@ -27,7 +27,8 @@ int main()
 {
 
     Solution s;
-    vector<int> vect{8, 10, 17, 1, 3};
+    // vector<int> vect{8, 10, 17, 1, 3};
+    vector<int> vect{4, 5, 6, 7, 0, 1, 2};
     cout << s.pivot(vect);
     return 0;
 }
