@@ -1,19 +1,36 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int sqrt(int n,int start,int end){
-    if(start>end)
-        return -1;
-    int mid = start + (end-start)/2;
-    if(mid*mid == n)
+int intPart(int n, int start, int end)
+{
+    if (start > end)
+        return end;
+    int mid = start + (end - start) / 2;
+    if (mid * mid == n)
         return mid;
-    else if(mid*mid > n)
-        return sqrt(n,start,mid-1);
+    else if (mid * mid > n)
+        return intPart(n, start, mid - 1);
     else
-        return sqrt(n,mid+1,end);
+        return intPart(n, mid + 1, end);
 }
-int main(){
-    int n = 144;
-    cout<<"Square root of "<<n<<" is "<<sqrt(n,0,n)<<"\n"; // "Square root of 81 is 9
+double floatingPart(int target, int integerPart, int precision)
+{
+    double factor = 1;
+    double answer = integerPart;
+
+    for (int i = 0; i < precision; i++)
+    {
+        factor = factor / 10;
+        for (double j = answer; j * j <= target; j = j + factor)
+            answer = j;
+    }
+
+    return answer;
+}
+int main()
+{
+    int n = 145;
+    int integerPart = intPart(n, 0, n); // "Square root of 81 is 9
+    cout << "The square root is " << floatingPart(n, integerPart, 3) << endl;
     return 0;
 }
