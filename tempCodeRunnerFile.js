@@ -18,6 +18,5 @@ const main = async () => {
   const name = await getName("Enter your name: ");
   console.log(`Hello ${name}!`);
 };
-(async () => {
-  await main();
-})();
+
+ main();
