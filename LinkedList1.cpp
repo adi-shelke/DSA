@@ -100,12 +100,16 @@ public:
             if (temp->next->next != NULL)
             {
                 temp->next = temp->next->next;
+                nodeToDelete->next = NULL;
                 delete nodeToDelete;
             }
+            // deleting last element
             else
             {
                 temp->next = NULL;
+                nodeToDelete->next = NULL;
                 delete nodeToDelete;
+                tail = temp; // updating the tail value
             }
         }
     }
